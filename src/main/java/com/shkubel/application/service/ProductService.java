@@ -59,8 +59,4 @@ public class ProductService implements ShowDelInterface {
         }
     }
 
-    @Override
-    public void show() {
-        productList.forEach(System.out::println);
-    }
 }

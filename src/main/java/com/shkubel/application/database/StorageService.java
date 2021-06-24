@@ -11,7 +11,6 @@ public interface  StorageService {
 
     List <User> loadUserList();
 
-
     void saveShopList(List<Shop> shopList);
 
     List<Shop> loadShopList();

@@ -59,9 +59,4 @@ public class UserService implements ShowDelInterface {
             System.err.println(e);
         }
     }
-
-    @Override
-    public void show() {
-        db.loadUserList().forEach(System.out::println);
-    }
 }

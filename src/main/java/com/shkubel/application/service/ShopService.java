@@ -53,12 +53,4 @@ public class ShopService implements ShowDelInterface {
 
     }
 
-
-    @Override
-    public void show() {
-        for (var shop : db.loadShopList()) {
-            System.out.println(shop);
-            System.out.println();
-        }
-    }
 }

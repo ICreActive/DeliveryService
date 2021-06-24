@@ -7,7 +7,7 @@ import com.shkubel.application.model.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DataBase implements StorageService{
+public class DataBase implements StorageService {
 
     protected static final String STORAGE_FILE_SHOPS = "Shops.json";
     protected static final String STORAGE_FILE_USERS = "Users.json";
@@ -17,13 +17,12 @@ public class DataBase implements StorageService{
 
 
     @Override
-    public void saveUserList(List <User> userList) {
+    public void saveUserList(List<User> userList) {
         SerializationUtil.exportDataToFile(userList, STORAGE_FILE_USERS);
-
     }
 
     @Override
-    public List <User> loadUserList() {
+    public List<User> loadUserList() {
         return (List<User>) SerializationUtil.importDataFromFile(STORAGE_FILE_USERS, new TypeToken<LinkedList<User>>() {
         }.getType());
     }
@@ -85,7 +84,7 @@ public class DataBase implements StorageService{
             if (user.getId() == id)
                 current = user;
         }
-        if (current==null) {
+        if (current == null) {
             throw new ObjectNotFoundException("User not found in DB");
         }
         return current;
@@ -99,7 +98,7 @@ public class DataBase implements StorageService{
             if (sp.getId() == id)
                 current = sp;
         }
-        if (current==null) {
+        if (current == null) {
             throw new ObjectNotFoundException("Product in shop not found in DB");
         }
         return current;
@@ -115,7 +114,7 @@ public class DataBase implements StorageService{
                 break;
             }
         }
-        if (current==null) {
+        if (current == null) {
             throw new ObjectNotFoundException("Product not found in DB");
         }
         return current;
@@ -131,14 +130,14 @@ public class DataBase implements StorageService{
                 break;
             }
         }
-        if (current==null) {
+        if (current == null) {
             throw new ObjectNotFoundException("Shop not found in DB");
         }
         return current;
     }
 
     @Override
-    public Order findOrderById(long id) throws  ObjectNotFoundException {
+    public Order findOrderById(long id) throws ObjectNotFoundException {
         Order current = null;
         for (var order : loadOrderList()
         ) {
@@ -147,7 +146,7 @@ public class DataBase implements StorageService{
                 break;
             }
         }
-        if (current==null) {
+        if (current == null) {
             throw new ObjectNotFoundException("Shop not found in DB");
         }
         return current;

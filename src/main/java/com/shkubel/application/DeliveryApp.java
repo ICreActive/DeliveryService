@@ -3,6 +3,7 @@ package com.shkubel.application;
 import com.shkubel.application.database.DataBase;
 import com.shkubel.application.init.InitData;
 import com.shkubel.application.service.*;
+import com.shkubel.application.util.ShowListUtil;
 
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class DeliveryApp {
         var orderService = new OrderService();
         var shopService = new ShopService();
 
-        userService.show();
+        ShowListUtil.show(db.loadUserList());
 
         System.out.println("1 - Registration" + '\n' + "2 - login");
         var sc = new Scanner(System.in);
@@ -80,7 +81,7 @@ public class DeliveryApp {
                 }
 
                 case 2 -> {
-                    shopService.show();
+                    ShowListUtil.show(db.loadShopList());
                     System.out.println("for update enter ID");
                     var sc14 = sc.nextInt();
                     sc.nextLine();
@@ -90,6 +91,7 @@ public class DeliveryApp {
                     var sc16 = sc.nextFloat();
                     sc.nextLine();
                     shopService.updateShop(sc14, sc15, sc16);
+
                 }
                 case 3 -> {
                     db.loadProductList().forEach(System.out::println);
@@ -103,7 +105,7 @@ public class DeliveryApp {
                     sc.nextLine();
                     productService.updateProduct(sc17, sc18, sc19);
                 }
-                case 4 -> shopProductService.show();
+                case 4 -> ShowListUtil.show(db.loadShopProductList());
 
                 case 5 -> {
                     System.out.println("Enter user ID");
@@ -116,16 +118,16 @@ public class DeliveryApp {
                     var sc22 = sc.nextInt();
                     sc.nextLine();
                     orderService.createOrder(sc20, sc21, sc22);
-                    orderService.show();
+                    ShowListUtil.show(db.loadOrderList());
                 }
                 case 6 -> {
-                    shopProductService.show();
+                    ShowListUtil.show(db.loadShopProductList());
                     System.out.println("Enter category");
                     var sc23 = sc.nextLine();
                     shopProductService.filterShopProductByCategory(db.loadShopProductList(), sc23);
                 }
                 case 7 -> {
-                    shopProductService.show();
+                    ShowListUtil.show(db.loadShopProductList());
                     System.out.println("Sort by price? y / n");
                     var sc24 = sc.nextLine();
                     if (sc24.equalsIgnoreCase("y")) {
@@ -160,7 +162,7 @@ public class DeliveryApp {
                     sc.nextLine();
                     switch (sc30) {
                         case 1 -> {
-                            userService.show();
+                            ShowListUtil.show(db.loadUserList());
                             System.out.println("Enter user ID");
                             var sc31 = sc.nextLong();
                             sc.nextLine();
@@ -168,7 +170,7 @@ public class DeliveryApp {
 
                         }
                         case 2 -> {
-                            shopService.show();
+                            ShowListUtil.show(db.loadShopList());
                             System.out.println("Enter shop ID");
                             var sc31 = sc.nextLong();
                             sc.nextLine();
@@ -176,7 +178,7 @@ public class DeliveryApp {
 
                         }
                         case 3 -> {
-                            productService.show();
+                            ShowListUtil.show(db.loadProductList());
                             System.out.println("Enter product ID");
                             var sc31 = sc.nextLong();
                             sc.nextLine();
@@ -184,19 +186,18 @@ public class DeliveryApp {
 
                         }
                         case 4 -> {
-                            shopProductService.show();
+                            ShowListUtil.show(db.loadShopProductList());
                             System.out.println("Enter ID");
                             var sc31 = sc.nextLong();
                             sc.nextLine();
                             shopProductService.delete(sc31);
                         }
                         case 5 -> {
-                            orderService.show();
+                            ShowListUtil.show(db.loadUserList());
                             System.out.println("Enter ID");
                             var sc31 = sc.nextLong();
                             sc.nextLine();
                             orderService.delete(sc31);
-
                         }
 
                     }

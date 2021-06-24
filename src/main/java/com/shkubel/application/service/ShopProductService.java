@@ -65,8 +65,4 @@ public class ShopProductService implements ShowDelInterface {
             System.err.println(e);
         }
     }
-    @Override
-    public void show() {
-        db.loadShopProductList().forEach(System.out::println);
-    }
 }

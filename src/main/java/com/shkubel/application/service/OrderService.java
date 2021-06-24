@@ -30,10 +30,6 @@ public class OrderService implements ShowDelInterface {
         }
     }
 
-    @Override
-    public void show() {
-        db.loadOrderList().forEach(System.out::println);
-    }
 
     @Override
     public void delete(long id) {
