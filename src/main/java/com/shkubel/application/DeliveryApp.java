@@ -60,8 +60,8 @@ public class DeliveryApp {
         String userChoice;
         do {
             System.out.println("1 - Edit User, 2 - Show all shops, 3 - Product list, " + '\n'
-                    + " 4 - Product in Shop, 5 - Create order, 6 - Filter by category, 7 - sortByPrice, 9 - Create new product," +
-                    " 10 - delete");
+                    + " 4 - Product in Shop, 5 - Create order, 6 - Filter by category, 7 - sortByPrice, 9 - Create new product, "
+                    + "10 - Add product to shop, " + " 11 - delete");
             var sc9 = sc.nextInt();
             sc.nextLine();
 
@@ -152,6 +152,18 @@ public class DeliveryApp {
                     productService.createProduct(sc27, sc28, sc29);
                 }
                 case 10 -> {
+                    ShowListUtil.show(db.loadShopList());
+                    System.out.println("Enter shop id");
+                    var sc27 = sc.nextLong();
+                    ShowListUtil.show(db.loadProductList());
+                    System.out.println("Enter product id");
+                    var sc28 = sc.nextLong();
+                    System.out.println("Enter quantity");
+                    var sc29 = sc.nextInt();
+                    sc.nextLine();
+                    shopProductService.createShopProduct(sc27,sc28,sc29);
+                }
+                case 11 -> {
                     System.out.println("What you have delete?" + '\n'
                             + "1 - User" + '\n'
                             + "2 - Shop" + '\n'

@@ -38,11 +38,11 @@ public final class InitData {
         shops.add(new Shop(4, "MOLL", 13));
         db.saveShopList(shops);
 
-        shopProductList.add(shopProduct.createShopProduct(1, 1, 1, 20));
-        shopProductList.add(shopProduct.createShopProduct(2, 2, 1, 15));
-        shopProductList.add(shopProduct.createShopProduct(3, 3, 2, 20));
-        shopProductList.add(shopProduct.createShopProduct(4, 3, 1, 14));
-        shopProductList.add(shopProduct.createShopProduct(5, 1, 4, 12));
+        shopProductList.add(shopProduct.createShopProduct( 1, 1, 20));
+        shopProductList.add(shopProduct.createShopProduct( 2, 1, 15));
+        shopProductList.add(shopProduct.createShopProduct(3, 2, 20));
+        shopProductList.add(shopProduct.createShopProduct( 3, 1, 14));
+        shopProductList.add(shopProduct.createShopProduct( 1, 4, 12));
         db.saveShopProductList(shopProductList);
 
     }

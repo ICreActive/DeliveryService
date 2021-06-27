@@ -15,7 +15,7 @@ public class ShopProductService implements ShowDelInterface {
     DataBase db = new DataBase();
     List<ShopProduct> shopProductList = db.loadShopProductList();
 
-    public ShopProduct createShopProduct(long id, long shopId, long productId, int count) {
+    public ShopProduct createShopProduct(long shopId, long productId, int count) {
         var shopProduct = new ShopProduct();
         try {
             shopProduct.setShop(db.findShopById(shopId));
@@ -28,18 +28,21 @@ public class ShopProductService implements ShowDelInterface {
             System.err.println(e);
         }
         try {
-        shopProduct.setPrice((db.findProductById(productId).getPrice()*db.findShopById(shopId).getMarkup()+100)/100);
+            shopProduct.setPrice((db.findProductById(productId).getPrice() * db.findShopById(shopId).getMarkup() + 100) / 100);
         } catch (ObjectNotFoundException e) {
             System.err.println(e);
         }
         shopProduct.setCount(count);
-        shopProduct.setId(id);
+
+        shopProduct.setId(shopProductList.size() + 1);
+        shopProductList.add(shopProduct);
+        db.saveShopProductList(shopProductList);
         return shopProduct;
     }
 
-    public void filterShopProductByCategory (List <ShopProduct> shopProductList, String filterCategory) {
-        for (ProdCategory category: ProdCategory.values()
-             ) {
+    public void filterShopProductByCategory(List<ShopProduct> shopProductList, String filterCategory) {
+        for (ProdCategory category : ProdCategory.values()
+        ) {
             if (category.name().equalsIgnoreCase(filterCategory)) {
                 shopProductList.stream()
                         .filter(shopProduct -> shopProduct.getProduct().getProdCategory()
@@ -48,10 +51,11 @@ public class ShopProductService implements ShowDelInterface {
             }
         }
     }
-    public void sortShopProductByPrice (List <ShopProduct> shopProductList) {
+
+    public void sortShopProductByPrice(List<ShopProduct> shopProductList) {
         Collections.sort(shopProductList);
         shopProductList.forEach(System.out::println);
-     }
+    }
 
     @Override
     public void delete(long id) {
@@ -60,8 +64,7 @@ public class ShopProductService implements ShowDelInterface {
             shopProductList.removeIf(product -> product.getId() == id);
             db.saveShopProductList(shopProductList);
             System.out.println("Deleted");
-        }
-        catch (ObjectNotFoundException e) {
+        } catch (ObjectNotFoundException e) {
             System.err.println(e);
         }
     }
